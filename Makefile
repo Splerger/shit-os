@@ -35,7 +35,7 @@ iso: kernel
 	grub-mkrescue -o my-kernel.iso $(ISO_PATH)
 
 run: my-kernel.iso
-	qemu-system-x86_64 my-kernel.iso
+	qemu-system-x86_64 -no-reboot my-kernel.iso
 
 .PHONY: clean
 clean:

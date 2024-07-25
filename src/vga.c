@@ -1,5 +1,6 @@
 #include "include/vga.h"
 #include "include/lib.h"
+#include "include/utils.h"
 
 void terminal_initialize(void) {
     terminal_buffer = (unsigned short *) VGA_ADDRESS;
@@ -83,6 +84,61 @@ void terminal_set_cursor(unsigned int x, unsigned int y) {
 void terminal_get_cursor(unsigned int *x, unsigned int *y) {
     *x = vga_index % VGA_WIDTH;
     *y = vga_index / VGA_WIDTH;
+}
+
+void print_cursor_position() {
+    unsigned int x, y;
+    char x_str[10];
+    char y_str[10];
+    char buffer[50]; // Buffer to hold the formatted string
+
+    // Get the cursor position
+    terminal_get_cursor(&x, &y);
+
+    // Convert integers to strings
+    int_to_str(x, x_str);
+    int_to_str(y, y_str);
+
+    // Construct the output string manually
+    char *msg = "Cursor Position: X=";
+    char *msg_end = ", Y=";
+    char *msg_end_end = "\n";
+    int idx = 0;
+
+    // Copy "Cursor Position: X="
+    while (*msg) {
+        buffer[idx++] = *msg++;
+    }
+
+    // Copy X value
+    char *ptr = x_str;
+    while (*ptr) {
+        buffer[idx++] = *ptr++;
+    }
+
+    // Copy ", Y="
+    ptr = msg_end;
+    while (*ptr) {
+        buffer[idx++] = *ptr++;
+    }
+
+    // Copy Y value
+    ptr = y_str;
+    while (*ptr) {
+        buffer[idx++] = *ptr++;
+    }
+
+    // Copy "\n"
+    ptr = msg_end_end;
+    while (*ptr) {
+        buffer[idx++] = *ptr++;
+    }
+
+    // Null-terminate the string
+    buffer[idx] = '\0';
+
+    // Print the buffer to the terminal
+    terminal_writestring(buffer);
 }
 
 void vga_set_pixel(unsigned int x, unsigned int y, unsigned char color) {
