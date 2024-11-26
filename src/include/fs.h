@@ -5,13 +5,13 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif 
+#endif
 
 #define MAX_FILES 128
 
 typedef struct {
     char *data;
-    const char *path;
+    char *path;
     size_t size;
 } File;
 
@@ -20,9 +20,11 @@ typedef struct {
     size_t num_files;
 } FileSystem;
 
-void create_file(FileSystem *fs, const char *path, const char *contents);
-const char* read_file(FileSystem *fs, const char *path);
-void delete_file(FileSystem *fs, const char *path);
+// Filesystem functions
+void init_filesystem(FileSystem *fs);
+int create_file(FileSystem *fs, const char *path, const char *contents);
+const char *read_file(FileSystem *fs, const char *path);
+int delete_file(FileSystem *fs, const char *path);
 
 #ifdef __cplusplus
 }

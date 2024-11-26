@@ -14,6 +14,7 @@ void kernel_main(void);
 
 void blue_screen(const char* errorcode, const char* errormessage) {
     vga_index = 0;
+    terminal_clear();
     terminal_setcolor(VGA_COLOR_BACKGROUND(VGA_COLOR_BLUE) | VGA_COLOR_FOREGROUND(VGA_COLOR_WHITE));
     terminal_writestring("A problem has been detected and the system has been shut down to prevent");
     terminal_writestring("damage to your computer.");
@@ -30,7 +31,7 @@ void blue_screen(const char* errorcode, const char* errormessage) {
     terminal_writestring("");
     terminal_writestring("If this is the first time you've seen this Stop error screen, restart");
     terminal_writestring("your computer. If this screen appears again, please email the");
-    terminal_writestring("developers of Zenith OS at <support@icxd.net>.");
+    terminal_writestring("developers of shit os <jane@mingnint.xyz>.");
     terminal_writestring("");
     terminal_writestring("Press any key to restart.");
     terminal_writestring("Press ESC to shutdown.");

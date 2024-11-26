@@ -1,0 +1,4 @@
+rm -rf *.o src/*.o *.iso *.bin *.elf kernel *iso
+nasm -f elf32 boot.asm -o boot.o
+gcc -m32 -c src/driver.c -o src/driver.o -Wall -Wextra -ffreestanding -m32 -c -O2 -nostdlib
+gcc -m32 -c src/fs.c -o src/fs.o -Wall -Wextra -ffreestanding -m32 -c -O2 -nostdlib

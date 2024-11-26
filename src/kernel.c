@@ -44,22 +44,15 @@ void kernel_main(void) {
     */
 
     // Initialize the filesystem
-    //FileSystem fs = {0};
-    //create_file(&fs, "/hello.txt", "Hello, world!");
-    //create_file(&fs, "/test.txt", "This is a test file.");
+    FileSystem fs = {0};
+    create_file(&fs, "/test.txt", "Sigma.");
 
     // Print the contents of the files
-    //const char* hello = read_file(&fs, "/hello.txt");
-    //const char* test = read_file(&fs, "/test.txt");
-    //terminal_writestring(hello);
-    //terminal_writestring(test);
+    const char* test = read_file(&fs, "/test.txt");
+    terminal_writestring(test);
 
     // Delete the test file
-    //delete_file(&fs, "/test.txt");
-
-    terminal_set_cursor(0, 1);
-
-    print_cursor_position();
+    delete_file(&fs, "/miau.txt");
 
     return;
 }
